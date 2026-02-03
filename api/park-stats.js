@@ -5,7 +5,7 @@ export default async function handler(req, res) {
   res.setHeader('Access-Control-Allow-Methods', 'GET');
   
   const API_BASE = 'https://park-theta.vercel.app/api';
-  const AUTH = 'Bearer 88abde8a275ada0c1517056eaf5ef0f42972fd2609ac035b1d6a4eb75b0aee54';
+  const AUTH = `Bearer ${process.env.PARK_API_TOKEN}`;
   
   const headers = {
     'Authorization': AUTH,
