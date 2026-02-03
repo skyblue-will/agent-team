@@ -862,6 +862,9 @@
 
         // Fetch live data from The Park API via our proxy
         async function fetchParkData() {
+            const healthDot = document.getElementById('health-dot');
+            const lastUpdated = document.getElementById('last-updated');
+            
             try {
                 const response = await fetch('/api/park-stats');
                 const stats = await response.json();
@@ -872,8 +875,25 @@
                 document.getElementById('tasks-count').textContent = stats.tasksCompleted || '--';
                 document.getElementById('library-count').textContent = stats.totalTasks || '--';
                 
-                // Add a subtle "live" indicator
-                if (!stats.error) {
+                // Update health indicator
+                if (stats.healthy) {
+                    healthDot.style.background = 'var(--success)';
+                    healthDot.style.boxShadow = '0 0 8px var(--success)';
+                    healthDot.title = 'Park API healthy';
+                } else {
+                    healthDot.style.background = '#f59e0b';
+                    healthDot.title = 'Using cached data';
+                }
+                
+                // Update last updated timestamp
+                if (stats.timestamp) {
+                    const updated = new Date(stats.timestamp);
+                    lastUpdated.textContent = `Last updated: ${updated.toLocaleTimeString('en-GB')}`;
+                    lastUpdated.style.opacity = '1';
+                }
+                
+                // Add a subtle "live" indicator animation
+                if (stats.healthy) {
                     document.querySelectorAll('.live-number').forEach(el => {
                         el.style.animation = 'pulse 2s ease-in-out';
                     });
@@ -885,6 +905,12 @@
                 document.getElementById('skills-count').textContent = '214';
                 document.getElementById('tasks-count').textContent = '221';
                 document.getElementById('library-count').textContent = '300';
+                
+                // Update health indicator to error state
+                healthDot.style.background = '#ef4444';
+                healthDot.title = 'Park API unreachable';
+                lastUpdated.textContent = 'Using fallback data';
+                lastUpdated.style.opacity = '1';
             }
         }
         
