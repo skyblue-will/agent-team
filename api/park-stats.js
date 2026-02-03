@@ -33,7 +33,8 @@ export default async function handler(req, res) {
       totalTasks: Array.isArray(tasks) ? tasks.length : 0,
       apiRoutes: docs?.routes?.length || 214,
       apiVersion: docs?.version || 'v1.66.0',
-      timestamp: new Date().toISOString()
+      timestamp: new Date().toISOString(),
+      healthy: true
     };
     
     res.status(200).json(stats);
@@ -47,6 +48,7 @@ export default async function handler(req, res) {
       apiRoutes: 214,
       apiVersion: 'v1.66.0',
       timestamp: new Date().toISOString(),
+      healthy: false,
       error: 'Using fallback data'
     });
   }
