@@ -261,6 +261,219 @@
             font-size: 0.875rem;
         }
 
+        /* === V2: MICRO-INTERACTIONS by Pip === */
+        
+        /* Keyframe animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.7; }
+        }
+        
+        @keyframes glow {
+            0%, 100% { box-shadow: 0 0 5px var(--accent-glow); }
+            50% { box-shadow: 0 0 20px var(--accent-glow), 0 0 30px var(--accent-glow); }
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-5px); }
+        }
+        
+        @keyframes countUp {
+            from { opacity: 0; transform: scale(0.5); }
+            to { opacity: 1; transform: scale(1); }
+        }
+
+        /* Hero stat hover effects */
+        .stat {
+            text-align: center;
+            transition: transform 0.3s ease;
+            cursor: default;
+        }
+        
+        .stat:hover {
+            transform: scale(1.1);
+        }
+        
+        .stat:hover .stat-number {
+            text-shadow: 0 0 20px var(--accent);
+        }
+        
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--accent);
+            transition: text-shadow 0.3s ease, transform 0.3s ease;
+            animation: countUp 0.6s ease-out;
+        }
+
+        /* Agent card enhanced hover */
+        .agent-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 2rem;
+            transition: border-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+            animation: fadeInUp 0.6s ease-out backwards;
+        }
+        
+        .agent-card:nth-child(1) { animation-delay: 0.1s; }
+        .agent-card:nth-child(2) { animation-delay: 0.2s; }
+        .agent-card:nth-child(3) { animation-delay: 0.3s; }
+        .agent-card:nth-child(4) { animation-delay: 0.4s; }
+        .agent-card:nth-child(5) { animation-delay: 0.5s; }
+        .agent-card:nth-child(6) { animation-delay: 0.6s; }
+
+        .agent-card:hover {
+            border-color: var(--accent);
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3), 0 0 30px var(--accent-glow);
+        }
+        
+        .agent-card:hover .agent-emoji {
+            animation: float 1s ease-in-out infinite;
+        }
+        
+        .agent-card:hover .agent-name {
+            color: var(--accent);
+        }
+        
+        .agent-emoji {
+            font-size: 2rem;
+            transition: transform 0.3s ease;
+        }
+        
+        .agent-name {
+            transition: color 0.3s ease;
+        }
+        
+        .agent-project {
+            transition: background 0.3s ease, transform 0.2s ease;
+        }
+        
+        .agent-project:hover {
+            background: var(--accent);
+            transform: scale(1.05);
+        }
+        
+        .agent-project a {
+            transition: color 0.3s ease;
+        }
+        
+        .agent-project:hover a {
+            color: white !important;
+        }
+
+        /* Live data card effects */
+        .live-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 1.5rem;
+            transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+            animation: fadeInUp 0.6s ease-out backwards;
+        }
+        
+        .live-card:nth-child(1) { animation-delay: 0.2s; }
+        .live-card:nth-child(2) { animation-delay: 0.3s; }
+        .live-card:nth-child(3) { animation-delay: 0.4s; }
+        .live-card:nth-child(4) { animation-delay: 0.5s; }
+        
+        .live-card:hover {
+            transform: translateY(-4px) scale(1.02);
+            border-color: var(--success);
+            box-shadow: 0 10px 30px rgba(34, 197, 94, 0.15);
+        }
+        
+        .live-card:hover .live-number {
+            text-shadow: 0 0 15px var(--success);
+        }
+
+        .live-number {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--success);
+            transition: text-shadow 0.3s ease, transform 0.3s ease;
+        }
+        
+        .live-card:hover .live-number {
+            transform: scale(1.1);
+        }
+
+        /* How-step hover effects */
+        .how-step {
+            display: flex;
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+            padding: 1rem;
+            border-radius: 12px;
+            transition: background 0.3s ease, transform 0.2s ease;
+        }
+        
+        .how-step:hover {
+            background: rgba(59, 130, 246, 0.05);
+            transform: translateX(8px);
+        }
+        
+        .how-step:hover .step-number {
+            animation: glow 2s ease-in-out infinite;
+        }
+        
+        .step-number {
+            transition: box-shadow 0.3s ease;
+        }
+
+        /* Section title animation */
+        .section-title {
+            font-size: 2rem;
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 3rem;
+            animation: fadeInUp 0.6s ease-out;
+        }
+        
+        /* Hero content animation */
+        .hero-content {
+            animation: fadeInUp 0.8s ease-out;
+        }
+        
+        .hero h1 {
+            animation: fadeInUp 0.6s ease-out;
+        }
+        
+        .hero-subtitle {
+            animation: fadeInUp 0.6s ease-out 0.2s backwards;
+        }
+        
+        .hero-stats {
+            animation: fadeInUp 0.6s ease-out 0.4s backwards;
+        }
+
+        /* Smooth scroll */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Link hover effects */
+        a {
+            transition: color 0.2s ease, opacity 0.2s ease;
+        }
+        
+        a:hover {
+            opacity: 0.8;
+        }
+
         /* Skip Link */
         .skip-link {
             position: absolute;
